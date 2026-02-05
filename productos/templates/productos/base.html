@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Artículos de Limpieza 526</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'inicio' %}">Artículos de Limpieza 526</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'catalogo' %}">Catálogo</a></li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="{% url 'pedido' %}">
+                            Mi Pedido
+                            <span id="carrito-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="display: none;">
+                                0
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contacto' %}">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link bg-dark rounded px-3 ms-lg-2" href="/admin">Admin</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+        <div class="container text-center text-md-start">
+            <div class="row">
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 fw-bold text-info">Artículos de Limpieza 526</h5>
+                    <p>Tu lugar de confianza para artículos de limpieza y perfumería de alta calidad.</p>
+                </div>
+
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 fw-bold text-info">Navegación</h5>
+                    <p><a href="{% url 'inicio' %}" class="text-white text-decoration-none">Inicio</a></p>
+                    <p><a href="{% url 'catalogo' %}" class="text-white text-decoration-none">Catálogo</a></p>
+                    <p><a href="{% url 'pedido' %}" class="text-white text-decoration-none">Mi Pedido</a></p>
+                </div>
+
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 fw-bold text-info">Contacto</h5>
+                    <p><i class="bi bi-geo-alt-fill me-2"></i> {{ direccion }}</p>
+                    <p><i class="bi bi-envelope-fill me-2"></i> limpieza526@gmail.com</p>
+                    <p><i class="bi bi-whatsapp me-2"></i> {{ whatsapp }}</p>
+                </div>
+
+                <div class="col-md-4 mx-auto mt-3 text-center">
+                    <h5 class="text-uppercase mb-4 fw-bold text-info">Seguinos</h5>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="#" class="text-white fs-4"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white fs-4"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white fs-4"><i class="bi bi-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="mb-4">
+            <div class="row align-items-center">
+                <div class="col-md-7 col-lg-8">
+                    <p class="small text-muted">© 2026 Todos los derechos reservados: <strong>{{ nombre_tienda }}</strong></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/{{ whatsapp }}" class="whatsapp-float" target="_blank">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/carrito.js' %}"></script>
+</body>
+</html>

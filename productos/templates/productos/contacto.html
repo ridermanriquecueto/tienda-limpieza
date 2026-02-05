@@ -1,0 +1,46 @@
+{% extends 'productos/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="contacto-section">
+    <div class="container d-flex justify-content-center align-items-center py-5">
+        <div class="contacto-box">
+            <h2 class="text-accent text-center mb-4">
+                <i class="bi bi-chat-dots-fill"></i> ¿EN QUÉ PODEMOS AYUDARTE?
+            </h2>
+            <p class="text-white text-center mb-4">Dejanos tu queja, sugerencia o consulta aquí debajo.</p>
+
+            <form action="#" method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label text-cian">Nombre Completo</label>
+                    <input type="text" class="form-control custom-input" placeholder="Tu nombre..." required>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label text-cian">Correo o WhatsApp</label>
+                    <input type="text" class="form-control custom-input" placeholder="Donde podamos responderte..." required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label text-cian">Motivo</label>
+                    <select class="form-select custom-input">
+                        <option value="queja">Tengo una queja</option>
+                        <option value="sugerencia">Sugerencia para el local</option>
+                        <option value="otros" selected>Otros fines / Consulta general</option>
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label text-cian">Tu Mensaje</label>
+                    <textarea class="form-control custom-input" rows="4" placeholder="Escribí aquí..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-cta w-100 py-3 shadow">
+                    <i class="bi bi-send-fill"></i> ENVIAR MENSAJE
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

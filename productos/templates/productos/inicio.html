@@ -1,0 +1,80 @@
+{% extends 'productos/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="hero-local m-0 p-0">
+    <div class="container-fluid overflow-hidden p-0" style="height: 80vh; position: relative;">
+        <div class="rebotador">
+            <div class="hero-content-box text-center">
+                <h1 class="text-accent">¡Bienvenido!</h1>
+                <div class="divider-custom"></div>
+                <p class="lead-text">
+                    Venta de artículos de limpieza y perfumería en <span class="highlight">Calle 526</span>.
+                </p>
+                <a href="{% url 'catalogo' %}" class="btn btn-cta shadow-lg">
+                    <i class="bi bi-cart4"></i> IR AL CATÁLOGO
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-4">
+        <div class="row g-4 text-center">
+            <div class="col-md-4">
+                <div class="p-3 border border-white rounded-4 h-100 shadow-sm" style="background-color: rgba(224, 247, 250, 0.7); backdrop-filter: blur(4px);">
+                    <div class="display-6 text-primary mb-2"><i class="bi bi-1-circle-fill"></i></div>
+                    <h6 class="fw-bold text-primary text-uppercase" style="text-shadow: 1px 1px 2px white;">Elegí</h6>
+                    <p class="text-dark fw-medium small mb-0">Navegá el catálogo y armá tu carrito.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3 border border-white rounded-4 h-100 shadow-sm" style="background-color: rgba(255, 255, 255, 0.8); backdrop-filter: blur(4px);">
+                    <div class="display-6 text-primary mb-2"><i class="bi bi-2-circle-fill"></i></div>
+                    <h6 class="fw-bold text-primary text-uppercase" style="text-shadow: 1px 1px 2px white;">Mandá</h6>
+                    <p class="text-dark fw-medium small mb-0">Envianos el pedido por WhatsApp.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3 border border-white rounded-4 h-100 shadow-sm" style="background-color: rgba(241, 243, 243, 0.7); backdrop-filter: blur(4px);">
+                    <div class="display-6 text-primary mb-2"><i class="bi bi-3-circle-fill"></i></div>
+                    <h6 class="fw-bold text-primary text-uppercase" style="text-shadow: 1px 1px 2px rgb(15, 15, 15);">Retirá</h6>
+                    <p class="text-dark fw-medium small mb-0">Vení a Calle 526 y pagá en caja.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center pb-5">
+        <div class="mt-3">
+            <a href="https://www.google.com/maps/search/?api=1&query=Calle+526+3777+La+Plata" 
+               target="_blank" 
+               class="btn btn-outline-info rounded-pill px-4 shadow-sm fw-bold">
+                <i class="bi bi-geo-alt-fill"></i> ¿CÓMO LLEGAR AL LOCAL?
+            </a>
+        </div>
+
+        <div class="qr-box mt-5">
+            <p class="qr-text fw-bold small text-muted">ESCANEAME PARA VOLVER A LA WEB</p>
+            <div class="qr-wrapper d-inline-block p-2 bg-white rounded shadow-sm" style="opacity: 0.8;">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data={{ request.build_absolute_uri }}" 
+                     alt="QR Web" style="width: 100px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Aseguramos que nada bloquee el movimiento */
+    .rebotador {
+        z-index: 1;
+        pointer-events: none; /* Permite que el mouse pase a través del cuadro si es necesario */
+    }
+    .hero-content-box {
+        pointer-events: auto; /* El botón sí debe ser clickable */
+    }
+    /* Estilo sutil para las tarjetas para que no "griten" tanto */
+    .border-info {
+        border-color: rgba(0, 188, 212, 0.3) !important;
+    }
+</style>
+{% endblock %}

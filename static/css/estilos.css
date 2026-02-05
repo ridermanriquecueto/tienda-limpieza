@@ -1,0 +1,534 @@
+/* =========================================
+   1. VARIABLES Y CONFIGURACIÓN GLOBAL
+   ========================================= */
+:root {
+    --azul: #00509D;
+    --azul-oscuro: #003060;
+    --cian: #00B4D8;
+    --menta: #80ED99;
+    --blanco: #FFFFFF;
+    --gris-claro: #F8F9FA;
+    --gris-texto: #495057;
+    --negro-footer: #1a1a1a;
+}
+
+/* RESET EXTREMO */
+main, .hero-local, .container-fluid {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.hero-local {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 80, 157, 0.4)), url('../img/local.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    margin-bottom: -50px !important;
+    
+    /* Calculamos: 100% de pantalla - altura del navbar (aprox 70px) */
+    min-height: calc(100vh - 70px); 
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Envoltorio para centrar el contenido */
+.hero-content-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* El footer NO debe tener margen arriba */
+footer {
+    margin-top: 0 !important;
+    border-top: none; /* Probá sacando el borde si ves una línea */
+}
+
+/* TRUCO PARA EL FOOTER FIJO ABAJO */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body { 
+    display: flex;
+    flex-direction: column;
+    background-color: var(--gris-claro); 
+    font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--gris-texto);
+    line-height: 1.6;
+}
+
+/* El contenido principal crece para empujar el footer */
+main {
+    flex: 1 0 auto;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================================
+   2. NAVEGACIÓN (NAVBAR)
+   ========================================= */
+.navbar { 
+    background-color: var(--azul) !important; 
+    padding: 0.8rem 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.nav-link { 
+    color: var(--blanco) !important; 
+    font-weight: 500; 
+    margin: 0 10px;
+    transition: all 0.3s ease;
+}
+
+/* =========================================
+   3. SECCIÓN HERO (INICIO) - TRANSPARENCIA TOTAL
+   ========================================= */
+.hero-local {
+    /* Gradiente casi invisible para que el local sea el protagonista */
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 80, 157, 0.1)), url('../img/local.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.hero-content-box {
+    /* Eliminamos el fondo blanco, dejamos solo un rastro de luz */
+    background: rgba(255, 255, 255, 0.02); 
+    
+    /* Mantenemos el desenfoque para que las letras no choquen con la foto */
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px);
+    
+    padding: 50px;
+    border-radius: 30px;
+    display: inline-block;
+    
+    /* Borde muy sutil para dar forma de cristal */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    
+    max-width: 95%;
+}
+
+/* Sombra a las letras para que se lean sobre la transparencia total */
+.text-accent {
+    color: var(--cian);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 3.5rem;
+    font-weight: 900;
+    text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.7); /* Sombra más fuerte para leer bien */
+    animation: fadeInDown 1s ease;
+}
+
+.lead-text {
+    color: var(--blanco);
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* Contenedor que se mueve */
+.rebotador {
+    position: absolute;
+    display: inline-block;
+    animation: reboteHorizontal 10s linear infinite alternate, 
+               reboteVertical 7s linear infinite alternate;
+}
+
+/* Movimiento de Izquierda a Derecha */
+@keyframes reboteHorizontal {
+    from { left: 0%; }
+    to { left: calc(100% - 350px); } /* 350px es el ancho aprox de tu caja */
+}
+
+/* Movimiento de Arriba hacia Abajo */
+@keyframes reboteVertical {
+    from { top: 0%; }
+    to { top: calc(100% - 300px); } /* 300px es el alto aprox de tu caja */
+}
+
+/* Ajuste para que en celular el rebote no se rompa */
+@media (max-width: 768px) {
+    @keyframes reboteHorizontal {
+        from { left: 0%; }
+        to { left: calc(100% - 280px); }
+    }
+    @keyframes reboteVertical {
+        from { top: 0%; }
+        to { top: calc(100% - 250px); }
+    }
+}
+
+
+/* Estilo para el contenedor del QR */
+.qr-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 15px;
+    display: inline-block;
+    border: 1px dashed rgba(255, 255, 255, 0.3);
+}
+
+/* BOTÓN GPS (Estilo Google Maps) */
+.btn-gps {
+    background: linear-gradient(45deg, #4285F4, #34A853, #FBBC05, #EA4335);
+    background-size: 300% 300%;
+    color: white !important;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 30px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    transition: 0.5s;
+    animation: gradientShift 5s ease infinite;
+}
+
+.btn-gps:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(66, 133, 244, 0.6);
+}
+
+/* TEXTO DEL QR EN NEÓN MENTA */
+.qr-text {
+    color: var(--menta);
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px var(--menta); /* Efecto Neón */
+    margin-bottom: 10px;
+}
+
+/* MARCO PARA EL QR */
+.qr-wrapper {
+    background: white;
+    padding: 8px;
+    border-radius: 12px;
+    display: inline-block;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    border: 3px solid var(--cian);
+}
+
+.qr-img {
+    width: 100px;
+    height: 100px;
+    display: block;
+}
+
+/* Animación para el color del botón GPS */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Efecto de rebote del QR (opcional para darle más vida) */
+.qr-box {
+    transition: transform 0.3s;
+}
+.qr-box:hover {
+    transform: rotate(5deg) scale(1.1);
+}
+/* TEXTO DEL QR EN CELESTE NEÓN */
+.qr-text {
+    color: var(--cian); /* Usamos el celeste/cian que definiste */
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    
+    /* Efecto de luz celeste */
+    text-shadow: 0 0 10px rgba(0, 180, 216, 0.8), 
+                 0 0 20px rgba(0, 180, 216, 0.4); 
+    
+    margin-bottom: 12px;
+    display: block;
+}
+/* =========================================
+   4. TARJETAS DE PRODUCTOS
+   ========================================= */
+.card-producto {
+    border: none;
+    border-radius: 20px;
+    background: var(--blanco);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.card-producto:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 80, 157, 0.2);
+}
+
+/* =========================================
+   5. FOOTER Y REDES
+   ========================================= */
+footer {
+    flex-shrink: 0; /* Evita que el footer se aplaste */
+    background-color: var(--negro-footer) !important;
+    border-top: 5px solid var(--cian);
+    color: #ced4da;
+    margin-top: 0 !important;
+}
+
+.social-icon {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: white !important;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.facebook { background-color: #1877F2; }
+.instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+.tiktok { background-color: #000; border: 1px solid #ff0050; }
+
+/* =========================================
+   6. WHATSAPP FLOTANTE
+   ========================================= */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: white !important;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* =========================================
+   7. RESPONSIVE (AJUSTES CELULAR)
+   ========================================= */
+@media (max-width: 768px) {
+    .text-accent {
+        font-size: 2.2rem; /* Texto más chico en celus */
+    }
+    
+    .lead-text {
+        font-size: 1.2rem;
+    }
+
+    .hero-content-box {
+        padding: 20px;
+    }
+
+    .hero-local {
+        background-attachment: scroll; /* El parallax falla en celus, mejor scroll */
+    }
+
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 25px;
+        bottom: 15px;
+        right: 15px;
+    }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* =========================================
+    8. - FORMULARIO DE CONTACTO (FONDO TOTAL)
+   ========================================= */
+
+.contacto-section {
+    /* El fondo DEBE ocupar todo el alto disponible */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 80, 157, 0.4)), url('../img/local.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    
+    /* Esto elimina el espacio blanco arriba y abajo */
+    min-height: calc(100vh - 70px); /* Ajusta al alto de la pantalla menos el nav */
+    width: 100%;
+    
+    display: flex;
+    align-items: center; /* Centra el form verticalmente */
+    justify-content: center; /* Centra el form horizontalmente */
+    
+    margin: -50px !important;
+    padding: 20px 0; /* Un pequeño respiro interno para que no toque los bordes */
+}
+
+.contacto-box {
+    background: rgba(0, 0, 0, 0.6); /* Un poco más oscuro para que resalte el celeste */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 2px solid rgba(0, 180, 216, 0.4);
+    border-radius: 20px;
+    padding: 30px;
+    width: 90%; /* Responsive */
+    max-width: 450px; /* Formulario compacto */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    
+    /* Esto asegura que la caja no crezca de más */
+    margin: auto; 
+}
+
+/* Colores Celestes (Cian) Potentes */
+.contacto-box h2 {
+    color: var(--cian) !important;
+    text-shadow: 0 0 10px rgba(0, 180, 216, 0.8);
+    font-size: 1.5rem !important;
+    font-weight: 800;
+}
+
+.contacto-box .form-label {
+    color: var(--cian) !important;
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+.custom-input {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(0, 180, 216, 0.5) !important;
+    color: white !important;
+}
+
+.custom-input:focus {
+    border-color: var(--cian) !important;
+    box-shadow: 0 0 10px var(--cian) !important;
+}
+
+/* Botón que resalte */
+.btn-cta {
+    background-color: var(--cian) !important;
+    color: var(--azul) !important;
+    font-weight: bold;
+}
+
+/* =========================================
+    9. - Colores de texto y precios 
+   ========================================= */
+/* Colores de texto y precios */
+.text-accent-dark { color: var(--azul); }
+.text-cian-price { color: var(--cian); font-size: 1.6rem; }
+
+/* Botones de filtro personalizados */
+.btn-cian {
+    background-color: var(--cian);
+    color: white;
+    border: none;
+}
+.btn-outline-cian {
+    color: var(--cian);
+    border: 1px solid var(--cian);
+}
+.btn-outline-cian:hover {
+    background-color: var(--cian);
+    color: white;
+}
+
+/* Tarjeta de producto */
+.card-producto {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-producto:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 180, 216, 0.2) !important;
+}
+
+/* Botón Agregar - Estilo Mundo Limpieza 526 */
+.btn-add-cart {
+    background-color: var(--azul);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.btn-add-cart:hover {
+    background-color: var(--cian);
+    transform: scale(1.03);
+}
+
+/* El cartel de OFERTA */
+.badge-oferta {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #ff3e3e;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 0.75rem;
+    z-index: 5;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* =========================================
+    10. - cartel stock bajo
+========================================= */
+
+/* Cartel de stock bajo */
+.badge-stock {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #ff9f43; /* Naranja llamativo */
+    color: white;
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.7rem;
+    z-index: 5;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Imagen en blanco y negro para agotados */
+.grayscale {
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
+/* Estilo para producto agotado */
+.opacity-75 {
+    background-color: #f8f9fa !important;
+}
+
+
+.bg-cian {
+    background-color: var(--cian) !important; /* Tu celeste Mundo Limpieza */
+    color: #000 !important;
+    font-weight: bold;
+    border: 1px solid var(--azul);
+}
